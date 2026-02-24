@@ -4,7 +4,7 @@
 
 char matrix[5][5];
 
-/* Function to create Playfair key matrix */
+// Function to generate Playfair matrix
 void generateMatrix(char key[]) {
     int used[26] = {0};
     int i, j, k = 0;
@@ -19,8 +19,7 @@ void generateMatrix(char key[]) {
     }
 
     for (i = 0; i < 26; i++) {
-        if (i + 'A' == 'J') 
-        continue;
+        if (i + 'A' == 'J') continue;
         if (!used[i]) {
             matrix[k / 5][k % 5] = i + 'A';
             k++;
@@ -28,100 +27,106 @@ void generateMatrix(char key[]) {
     }
 }
 
-/* Find position of character in matrix */
+// Function to print matrix
+void printMatrix() {
+    int i, j;
+    printf("\nPlayfair Matrix:\n");
+    for (i = 0; i < 5; i++) {
+        for (j = 0; j < 5; j++)
+            printf("%c ", matrix[i][j]);
+        printf("\n");
+    }
+}
+
+// Find position of a character
 void findPosition(char ch, int *row, int *col) {
     int i, j;
     if (ch == 'J') ch = 'I';
-
     for (i = 0; i < 5; i++)
         for (j = 0; j < 5; j++)
             if (matrix[i][j] == ch) {
                 *row = i;
                 *col = j;
-                return;
             }
 }
 
-/* Playfair encryption */
-void encrypt(char text[]) {
-    int i;
+// Encrypt or Decrypt
+void playfair(char text[], int mode) {
+    int i, r1, c1, r2, c2;
     for (i = 0; i < strlen(text); i += 2) {
-        int r1, c1, r2, c2;
         findPosition(text[i], &r1, &c1);
         findPosition(text[i + 1], &r2, &c2);
 
         if (r1 == r2) {
-            text[i]     = matrix[r1][(c1 + 1) % 5];
-            text[i + 1] = matrix[r2][(c2 + 1) % 5];
-        }
-        else if (c1 == c2) {
-            text[i]     = matrix[(r1 + 1) % 5][c1];
-            text[i + 1] = matrix[(r2 + 1) % 5][c2];
-        }
-        else {
-            text[i]     = matrix[r1][c2];
-            text[i + 1] = matrix[r2][c1];
-        }
-    }
-}
-
-/* Playfair decryption */
-void decrypt(char text[]) {
-    int i;
-    for (i = 0; i < strlen(text); i += 2) {
-        int r1, c1, r2, c2;
-        findPosition(text[i], &r1, &c1);
-        findPosition(text[i + 1], &r2, &c2);
-
-        if (r1 == r2) {
-            text[i]     = matrix[r1][(c1 + 4) % 5];
-            text[i + 1] = matrix[r2][(c2 + 4) % 5];
-        }
-        else if (c1 == c2) {
-            text[i]     = matrix[(r1 + 4) % 5][c1];
-            text[i + 1] = matrix[(r2 + 4) % 5][c2];
-        }
-        else {
-            text[i]     = matrix[r1][c2];
+            text[i] = matrix[r1][(c1 + mode + 5) % 5];
+            text[i + 1] = matrix[r2][(c2 + mode + 5) % 5];
+        } else if (c1 == c2) {
+            text[i] = matrix[(r1 + mode + 5) % 5][c1];
+            text[i + 1] = matrix[(r2 + mode + 5) % 5][c2];
+        } else {
+            text[i] = matrix[r1][c2];
             text[i + 1] = matrix[r2][c1];
         }
     }
 }
 
 int main() {
-    char key[50], text[100];
-    int i, j = 0;
+    char key1[100],key2[100], message[100];
+    int i,j, len;
 
-    printf("Enter Key: ");
-    scanf("%s", key);
+    printf("Enter key: ");
+    scanf("%s", key1);
 
-    printf("Enter Message: ");
-    scanf("%s", text);
+    printf("Enter message: ");
+    scanf("%s", message);
 
-    /* Convert key and text to uppercase */
-    for (i = 0; key[i]; i++) key[i] = toupper(key[i]);
-    for (i = 0; text[i]; i++) text[i] = toupper(text[i]);
+    // Convert to uppercase
+    for (i = 0; key1[i]; i++) key1[i] = toupper(key1[i]);
+    for (i = 0; message[i]; i++) message[i] = toupper(message[i]);
 
-    /* Prepare message */
-    char prepared[100];
-    for (i = 0; i < strlen(text); i++) {
-        prepared[j++] = text[i];
-        if (text[i] == text[i + 1])
-            prepared[j++] = 'X';
+    // Prepare message
+    len = strlen(message);
+    for (i = 0; i < len; i += 2) {
+        if (message[i] == message[i + 1]) {
+            for ( j = len; j > i + 1; j--)
+                message[j] = message[j - 1];
+            message[i + 1] = 'X';
+            len++;
+        }
     }
-    if (j % 2 != 0)
-        prepared[j++] = 'X';
-    prepared[j] = '\0';
+    if (len % 2 != 0) {
+        message[len++] = 'X';
+        message[len] = '\0';
+    }
 
-    generateMatrix(key);
+    generateMatrix(key1);
+    printMatrix();
 
-    printf("\nEncrypted Text: ");
-    encrypt(prepared);
-    printf("%s", prepared);
+    playfair(message, 1);
+    printf("\nEncrypted Text: %s", message);
 
-    printf("\nDecrypted Text: ");
-    decrypt(prepared);
-    printf("%s", prepared);
-
+   
+    i=0;
+    while(i!=3){
+    printf("\nEnter key: ");
+    scanf("%s", key2);
+    
+    for (j = 0; key2[j]; j++)
+    key2[j] = toupper(key2[j]);
+    
+    if(strcmp(key1,key2)==0){
+    playfair(message, -1);
+    printf("Decrypted Text: %s\n", message);
+	return 0;	
+	}
+	else{
+		printf("Please, enter correct key.\n");
+		i++;
+	}
+	}
+   
     return 0;
 }
+
+
+
