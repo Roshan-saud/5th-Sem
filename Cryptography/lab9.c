@@ -40,7 +40,7 @@ int main() {
         return 0;
     }
 
-    printf("Euler Totient Function φ(%d) = %d\n", n, phi(n));
+    printf("Euler Totient Function phi(%d) = %d\n", n, phi(n));
 
     return 0;
 }

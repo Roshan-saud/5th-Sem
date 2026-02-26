@@ -62,12 +62,15 @@ int main() {
 
     for(int i = 1; i < n; i++) {
 
-        if(power(g, i, n) == 1 && i < n - 1) {
-            flag = 0;   // Not primitive root
-            break;      
-        }
-    }
+    int val = power(g, i, n);   // calculate g^i mod n
 
+    printf(" %d^%d mod %d =  %d\n",g, i,n, val);   // print trace table
+
+    if(val == 1 && i < n - 1) {
+        flag = 0;
+        break;
+    }
+}
 
     // ---------- FINAL RESULT ----------
     if(flag)
