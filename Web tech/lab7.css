@@ -1,0 +1,29 @@
+/* External CSS */
+body {
+    font-family: Verdana, sans-serif;
+    background-image: url('background2.jpg');
+    /* another background */
+    background-repeat: repeat;
+    /* repeated background */
+}
+
+p.external {
+    font-family: Verdana, sans-serif;
+    color: navy;
+}
+
+a.external:link {
+    color: teal;
+}
+
+a.external:visited {
+    color: brown;
+}
+
+a.external:hover {
+    color: magenta;
+}
+
+a.external:active {
+    color: black;
+}

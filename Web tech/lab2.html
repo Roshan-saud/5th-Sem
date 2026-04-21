@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Form Page</title>
+  <link rel="stylesheet" href="lab2.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Registration Form</h2>
+    <form>
+      <!-- Text Fields -->
+      <label>Name:</label>
+      <input type="text" placeholder="Enter your name">
+
+      <label>Email:</label>
+      <input type="text" placeholder="Enter your email">
+
+      <!-- Radio Buttons -->
+      <label>Gender:</label>
+      <div class="group">
+        <input type="radio" name="gender" id="male">
+        <label for="male">Male</label>
+        <input type="radio" name="gender" id="female">
+        <label for="female">Female</label>
+      </div>
+
+      <!-- Checkboxes -->
+      <label>Hobbies:</label>
+      <div class="group">
+        <input type="checkbox" id="reading">
+        <label for="reading">Reading</label>
+        <input type="checkbox" id="coding">
+        <label for="coding">Coding</label>
+        <input type="checkbox" id="travel">
+        <label for="travel">Travel</label>
+      </div>
+
+      <!-- Dropdown -->
+      <label>Country:</label>
+      <select>
+        <option>Nepal</option>
+        <option>India</option>
+        <option>USA</option>
+        <option>UK</option>
+      </select>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</body>
+</html>

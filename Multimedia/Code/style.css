@@ -1,0 +1,84 @@
+/* General Styling */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Login Page */
+.login-container {
+    width: 300px;
+    margin: 120px auto;
+    padding: 30px;
+    background: white;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px gray;
+}
+
+.input-field {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #0056b3;
+}
+
+.link {
+    color: blue;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    background: #007BFF;
+    color: white;
+    padding: 15px;
+}
+
+.logo {
+    margin: 0;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 15px;
+    cursor: pointer;
+}
+
+/* Dashboard */
+.dashboard {
+    padding: 20px;
+}
+
+.card-container {
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    width: 150px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px gray;
+}

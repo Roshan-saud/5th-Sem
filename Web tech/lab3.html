@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Validation</title>
+    <script>
+        function validateForm() {
+            let username = document.forms["myForm"]["username"].value;
+            let password = document.forms["myForm"]["password"].value;
+            let edu = document.forms["myForm"]["edu"];
+
+            if (username == "" || password == "") {
+                alert("All fields are required");
+                return false;
+            }
+
+            if (username.length < 4) {
+                alert("Username must be at least 4 characters");
+                return false;
+            }
+
+            if (!(password[0] >= '0' && password[0] <= '9' && password.endsWith("#"))) {
+                alert("Password must start with a digit and end with #");
+                return false;
+            }
+
+            let checked = false;
+            for (let i = 0; i < edu.length; i++) {
+                if (edu[i].checked) checked = true;
+            }
+            if (!checked) {
+                alert("Select at least one education field");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+
+<form name="myForm" onsubmit="return validateForm()">
+    Username: <input type="text" name="username"><br><br>
+    Password: <input type="password" name="password"><br><br>
+
+    Education:<br>
+    <input type="checkbox" name="edu" value="school"> School
+    <input type="checkbox" name="edu" value="college"> College
+    <input type="checkbox" name="edu" value="university"> University<br><br>
+
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>

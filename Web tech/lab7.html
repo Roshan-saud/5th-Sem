@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lab 7 – CSS Demo</title>
+
+    <!-- INTERNAL CSS -->
+    <style>
+        body {
+            font-family: "Times New Roman", serif;
+            background-image: url('background.jpg');
+            background-repeat: no-repeat;
+            /* required */
+            background-size: cover;
+        }
+
+        p.internal {
+            font-family: Georgia, serif;
+            color: green;
+        }
+
+        /* Internal link styles */
+        a.internal:link {
+            color: red;
+        }
+
+        a.internal:visited {
+            color: purple;
+        }
+
+        a.internal:hover {
+            color: orange;
+        }
+
+        a.internal:active {
+            color: green;
+        }
+    </style>
+
+    <!-- EXTERNAL CSS -->
+    <link rel="stylesheet" type="text/css" href="lab7.css">
+</head>
+
+<body>
+
+    <h1 style="font-family: Arial, sans-serif; color: navy;">Lab 7 – CSS Demo</h1>
+
+    <!-- Inline CSS -->
+    <h2>1. Inline CSS</h2>
+    <p style="font-family: Courier New, monospace; color: blue;">
+        This paragraph uses inline CSS with a different font.
+    </p>
+    <a href="https://example.com" style="color: teal;">Inline Link</a>
+
+    <!-- Internal CSS -->
+    <h2>2. Internal CSS</h2>
+    <p class="internal">This paragraph uses internal CSS with Georgia font.</p>
+    <a href="https://google.com" class="internal">Internal Link</a>
+
+    <!-- External CSS -->
+    <h2>3. External CSS</h2>
+    <p class="external">This paragraph uses external CSS with Verdana font.</p>
+    <a href="https://example.com" class="external">External Link</a>
+
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Cookies and Local Storage</title>
+    <link rel="stylesheet" href="lab16.css">
+    <script src="lab16.js"></script>
+</head>
+<body onload="applyPreference()">
+
+<h2>User Preferences</h2>
+
+<label for="themeSelect">Select Theme:</label>
+<select id="themeSelect" onchange="savePreference()">
+    <option value="light">Light</option>
+    <option value="dark">Dark</option>
+</select>
+
+<br><br>
+<label for="fontSizeSelect">Select Font Size:</label>
+<select id="fontSizeSelect" onchange="savePreference()">
+    <option value="16px">16px</option>
+    <option value="20px">20px</option>
+    <option value="24px">24px</option>
+</select>
+
+<br><br>
+<button onclick="resetPreference()" id="btn1">Reset Preference</button>
+
+<p id="sampleText">This is a sample text to show theme and font size changes.</p>
+
+</body>
+</html>
